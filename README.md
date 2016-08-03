@@ -2,7 +2,7 @@ codegenj - DBus Code Generator for Java APIs
 ============================================
 
 [![Build Status](https://travis-ci.org/olir/codegenj.png)](https://travis-ci.org/olir/codegenj/builds)
-[![Coverage Status](https://coveralls.io/repos/olir/codegenj/badge.svg)](https://coveralls.io/r/olir/codegenj)
+[![Coverage Status](https://coveralls.io/repos/github/olir/codegenj/badge.svg?branch=master)](https://coveralls.io/github/olir/codegenj?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.serviceflow/codegenj/badge.png)](https://maven-badges.herokuapp.com/maven-central/de.serviceflow/codegenj)
 
 # About
