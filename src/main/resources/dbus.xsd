@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+    	<xs:documentation>Schema based on version 0.26 of https://dbus.freedesktop.org/doc/dbus-specification.html#introspection-format ,
+  		written in 2916 for codegenj by Oliver Rode, licensed under GNU Free Documentation License.</xs:documentation></xs:annotation>
+    <xs:element name="node" type="NodeType" />
+
+  <xs:complexType name="NodeType">
+  	<xs:sequence>
+  		<xs:element name="interface" type="InterfaceType" maxOccurs="unbounded" minOccurs="0"></xs:element>
+  		<xs:element name="node" type="NodeType" maxOccurs="unbounded" minOccurs="0"></xs:element>
+  	</xs:sequence>
+  	<xs:attribute name="name" type="xs:string" use="optional"></xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="InterfaceType">
+  	<xs:sequence>
+  		<xs:element name="method" type="MemberType"
+  			maxOccurs="unbounded" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="signal" type="MemberType"
+  			maxOccurs="unbounded" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="property" type="PropertyType"
+  			maxOccurs="unbounded" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="annotation" type="AnnotationType" maxOccurs="unbounded" minOccurs="0"></xs:element>
+  	</xs:sequence>
+  	<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="MemberType">
+  	<xs:sequence>
+  		<xs:element name="arg" type="ArgType" maxOccurs="unbounded" minOccurs="0"></xs:element>
+  		<xs:element name="annotation" type="AnnotationType" maxOccurs="unbounded" minOccurs="0"></xs:element>
+  	</xs:sequence>
+  	<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ArgType">
+  	<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+  	<xs:attribute name="type" type="xs:string" use="required"></xs:attribute>
+  	<xs:attribute name="direction" use="optional" default="out">
+  		<xs:simpleType>
+  			<xs:restriction base="xs:string">
+  				<xs:enumeration value="in"></xs:enumeration>
+  				<xs:enumeration value="out"></xs:enumeration>
+  			</xs:restriction>
+  		</xs:simpleType>
+  	</xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="PropertyType">
+  	<xs:sequence>
+  		<xs:element name="annotation" type="AnnotationType" maxOccurs="unbounded" minOccurs="0"></xs:element>
+  	</xs:sequence>
+  	<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+  	<xs:attribute name="type" type="xs:string"></xs:attribute>
+  	<xs:attribute name="access" type="xs:string"></xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="AnnotationType">
+  	<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+  	<xs:attribute name="value" type="xs:string" use="required"></xs:attribute>
+  </xs:complexType>
+</xs:schema>
