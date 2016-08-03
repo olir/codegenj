@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<!-- Maven Coordinates -->
-	<groupId>olir</groupId>
+	<groupId>de.serviceflow</groupId>
 	<artifactId>codegenj</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
