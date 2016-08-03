@@ -25,8 +25,8 @@ or open it without site:run under
  
 ## HOWTO
 
-Please read [Instructions](src/site/markdown/instructions.md).
+TODO: [Instructions](src/site/markdown/instructions.md).
  
 ## Notice
 
-> Please read [Notice](Notice.html) and "Dependencies" in site docs.
+TODO: [Notice](Notice.html) and "Dependencies" in site docs.
