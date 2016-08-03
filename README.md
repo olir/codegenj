@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 codegenj - DBus Code Generator for Java APIs
 ============================================
 
@@ -31,9 +30,3 @@ Please read [Instructions](src/site/markdown/instructions.md).
 ## Notice
 
 > Please read [Notice](Notice.html) and "Dependencies" in site docs.
-=======
-# codegenj
-DBus Code Generator for Java APIs
-
-Upload pending.
->>>>>>> origin/master
