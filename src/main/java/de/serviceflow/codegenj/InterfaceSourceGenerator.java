@@ -58,9 +58,9 @@ public class InterfaceSourceGenerator {
 		PrintWriter w;
 
 		String ppath = packagePath();
-		String dir = destination + "/src/main/java";
+		String dir = destination + "/generated";
 		new File(dir + '/' + ppath).mkdirs();
-		String jnidir = destination + "/src/main/jni";
+		String jnidir = destination + "/jni";
 		new File(jnidir).mkdirs();
 		String jnihdir = jnidir + "/include";
 		new File(jnihdir).mkdirs();

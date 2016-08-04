@@ -15,6 +15,7 @@
  */
 package de.serviceflow.codegenj;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
@@ -44,7 +45,8 @@ public class MakefileGenerator {
 		TemplateParser t;
 		PrintWriter w;
 
-		String jnidir = destination + "/src/main/jni";
+		String jnidir = destination + "/jni";
+		new File(jnidir).mkdirs();
 
 		t = new TemplateParser("template/Makefile.txt");
 		t.open();

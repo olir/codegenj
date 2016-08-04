@@ -47,10 +47,14 @@ public class ObjectManagerGenerator {
 		TemplateParser t;
 		PrintWriter w;
 
-		String jnidir = destination + "/src/main/jni";
 		String ppath = packagePath();
-		String dir = destination + "/src/main/java";
-		new File(dir+'/'+ppath).mkdirs();
+		String dir = destination + "/generated";
+		new File(dir + '/' + ppath).mkdirs();
+		String jnidir = destination + "/jni";
+		new File(jnidir).mkdirs();
+		String jnihdir = jnidir + "/include";
+		new File(jnihdir).mkdirs();
+
 
 		/*
 		 * ObjectManager.c
