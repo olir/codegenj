@@ -656,6 +656,10 @@ public class CodeGenerationProcessing {
 									jnireturntype = "jobjectArray";
 									ctype = "char *const *";
 									// supported = false;
+								} else if ("jobject".equals(jnireturntype)) {
+										jnireturntype = "jobjectArray";
+										ctype = "void *";
+										supported = false;
 								} else {
 									jnireturntype = jnireturntype + "Array";
 									ctype = ctype + " *";
