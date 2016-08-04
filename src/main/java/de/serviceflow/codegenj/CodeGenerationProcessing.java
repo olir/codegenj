@@ -101,8 +101,10 @@ public class CodeGenerationProcessing {
 									Naming.javaMemberName(m.getName()));
 							p.getParameters().put("method.cname",
 									Naming.cName(m.getName()));
-							p.getParameters().put("method.sname",
-									Naming.cName(m.getName()).replace('_', '-'));
+							p.getParameters()
+									.put("method.sname",
+											Naming.cName(m.getName()).replace(
+													'_', '-'));
 							String comment = m.getComment();
 							if (comment == null)
 								comment = "";
@@ -154,8 +156,13 @@ public class CodeGenerationProcessing {
 										supported = false;
 									} else if (aDims == 1) {
 										if ("jstring".equals(jnireturntype)) {
-											jnireturntype = "jobject";
+											jnireturntype = "jobjectArray";
 											supported = false;
+										} else if ("jobject"
+												.equals(jnireturntype)) {
+											jnireturntype = "jobjectArray";
+											supported = false;
+
 										} else {
 											jnireturntype = jnireturntype
 													+ "Array";
@@ -368,7 +375,8 @@ public class CodeGenerationProcessing {
 								w.print("// Method signature unsupported: "
 										+ m.getName());
 						}
-					} else if ("de.serviceflow.codegenj.CollectorAPI".equals(blockArg)) {
+					} else if ("de.serviceflow.codegenj.CollectorAPI"
+							.equals(blockArg)) {
 						StringBuffer initCode = new StringBuffer();
 						StringBuffer addCode = new StringBuffer();
 						StringBuffer removeCode = new StringBuffer();
@@ -570,7 +578,8 @@ public class CodeGenerationProcessing {
 				Property objective = (Property) o;
 				if ("ao".equals(objective.getType())) {
 					for (Annotation a : objective.getAnnotations()) {
-						if ("de.serviceflow.codegenj.CollectorAPI".equals(a.getName())) {
+						if ("de.serviceflow.codegenj.CollectorAPI".equals(a
+								.getName())) {
 							return; // handled by annotation - skip property
 						}
 					}
@@ -732,8 +741,7 @@ public class CodeGenerationProcessing {
 										creturncode
 												.append("Array(env, asize);\n");
 
-										creturncode
-												.append("    (*env)->Set");
+										creturncode.append("    (*env)->Set");
 										creturncode.append(Character
 												.toUpperCase(javareturnbasetype
 														.charAt(0)));
