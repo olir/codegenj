@@ -21,7 +21,7 @@ $(IDIR)/%.h:
 	mkdir $(ODIR)
 
 $$$library$$$-codegen.c: $(IDIR)/%.h
-	gdbus-codegen --generate-c-code=$$$library$$$-codegen --c-generate-object-manager --c-namespace= --interface-prefix=$$$iprefix$$$ ../../../../test-classes/org_bluez.xml
+	gdbus-codegen --generate-c-code=$$$library$$$-codegen --c-generate-object-manager --c-namespace= --interface-prefix=$$$iprefix$$$ ../classes/$$$xmlfile$$$
 	mv $$$library$$$-codegen.h include/$$$library$$$-codegen.h
 
 $(ODIR)/%.o: %.c $(DEPS)

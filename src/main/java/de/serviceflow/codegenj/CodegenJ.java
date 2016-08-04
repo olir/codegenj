@@ -344,7 +344,11 @@ public class CodegenJ {
 		parameters.put("headerfiles", headerFiles.toString());
 		parameters.put("classlist", classlist.toString());
 		parameters.put("objfiles", objFiles.toString());
-
+		String xml = xmlFile;
+		if (xml.lastIndexOf('/')>=0)
+			xml = xml.substring(xml.lastIndexOf('/')+1);
+		parameters.put("xmlfile", xml);
+		
 		MakefileGenerator mg = new MakefileGenerator(node, parameters,
 				destination);
 		mg.open();
