@@ -5,7 +5,7 @@
 	<!-- Maven Coordinates -->
 	<groupId>de.serviceflow</groupId>
 	<artifactId>codegenj</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<prerequisites>
@@ -24,7 +24,10 @@
 		<tag>HEAD</tag>
 	</scm>
 
-	<!-- set version then mvn clean deploy, then check at https://oss.sonatype.org/ -->
+	<!-- set version then mvn clean deploy, then check at https://oss.sonatype.org/ ,
+	     Select Staging Repositories, select entry, close, release. in case of error
+		 check http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22nexus-staging-maven-plugin%22 
+		 for latest version. -->
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
@@ -275,7 +278,7 @@
 				<executions>
 					<execution>
 						<id>sign-artifacts</id>
-						<phase>deploy</phase>
+						<phase>verify</phase>
 						<goals>
 							<goal>sign</goal>
 						</goals>
@@ -285,7 +288,7 @@
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.6.5</version>
+				<version>1.6.7</version>
 				<extensions>true</extensions>
 				<executions>
 					<execution>
@@ -351,7 +354,7 @@
 			<plugin>
 				<groupId>org.eluder.coveralls</groupId>
 				<artifactId>coveralls-maven-plugin</artifactId>
-				<version>3.0.1</version>
+				<version>4.2.0</version>
 			</plugin>
 			<!-- travis -->
 			<plugin>

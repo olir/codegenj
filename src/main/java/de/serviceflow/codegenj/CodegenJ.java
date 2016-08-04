@@ -208,6 +208,7 @@ public class CodegenJ {
 		parameters.put("iprefix", iprefix);
 		parameters.put("library", library);
 		StringBuffer headerFiles = new StringBuffer();
+		StringBuffer classlist = new StringBuffer();
 		StringBuffer objFiles = new StringBuffer();
 
 		/*
@@ -299,6 +300,8 @@ public class CodegenJ {
 			}
 		}
 
+		classlist.append("de.serviceflow.codegenj.ObjectManager");
+
 		/*
 		 * Create Interface-JNI Layer with .c and .java files
 		 */
@@ -317,6 +320,10 @@ public class CodegenJ {
 			headerFiles.append(parameters.get("interface.jname"));
 			headerFiles.append(".h");
 
+			// de.serviceflow.codegenj.ObjectManager org.bluez.Adapter1 org.bluez.Device1 org.bluez.GattCharacteristic1 org.bluez.GattDescriptor1 org.bluez.GattService1 org.bluez.Agent1 org.bluez.AgentManager1
+			classlist.append(' ');
+			classlist.append(parameters.get("interface.name"));
+			
 			objFiles.append(' ');
 			objFiles.append(parameters.get("interface.uname"));
 			objFiles.append(".o");
@@ -335,6 +342,7 @@ public class CodegenJ {
 		 */
 
 		parameters.put("headerfiles", headerFiles.toString());
+		parameters.put("classlist", classlist.toString());
 		parameters.put("objfiles", objFiles.toString());
 
 		MakefileGenerator mg = new MakefileGenerator(node, parameters,

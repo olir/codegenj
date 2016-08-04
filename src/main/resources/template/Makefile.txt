@@ -16,7 +16,7 @@ _OBJ = $$$library$$$-codegen.o ObjectManager.o $$$objfiles$$$
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(IDIR)/%.h:
-	javah -d include -classpath ../classes de.serviceflow.codegenj.ObjectManager org.bluez.Adapter1 org.bluez.Device1 org.bluez.GattCharacteristic1 org.bluez.GattDescriptor1 org.bluez.GattService1 org.bluez.Agent1 org.bluez.AgentManager1
+	javah -d include -classpath ../classes $$$classlist$$$
 	rm -rf $(ODIR)
 	mkdir $(ODIR)
 
