@@ -4,7 +4,6 @@ PKGDEPS = glib-2.0 gobject-2.0 gio-2.0 gio-unix-2.0
 
 IDIR =./include
 CC=gcc
-CFLAGS=-fPIC -Wall -g -I$(IDIR) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux $(shell pkg-config --cflags $(PKGDEPS))
 
 ODIR=obj
 LDIR =../lib
@@ -19,12 +18,9 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(IDIR)/%.h:
 	javah -d include -classpath ../classes $$$classlist$$$
-	rm -rf $(ODIR)
-	mkdir $(ODIR)
 
 $$$library$$$-codegen.c: $(IDIR)/%.h
 	gdbus-codegen --generate-c-code=$$$library$$$-codegen --c-generate-object-manager --c-namespace= --interface-prefix=$$$iprefix$$$ ../classes/$$$xmlfile$$$
-	mv $$$library$$$-codegen.h include/$$$library$$$-codegen.h
 
 $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
@@ -38,4 +34,5 @@ all: lib$$$library$$$.so.1.0
 
 clean:
 	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ $$$library$$$-codegen.c $(IDIR)/*.h
+	mkdir $(ODIR)
 
