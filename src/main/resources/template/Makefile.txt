@@ -4,6 +4,7 @@ PKGDEPS = glib-2.0 gobject-2.0 gio-2.0 gio-unix-2.0
 
 IDIR =./include
 CC=gcc
+CFLAGS=-fPIC -Wall -g -I$(.) -I$(IDIR) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux $(shell pkg-config --cflags $(PKGDEPS)) -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
 
 ODIR=obj
 LDIR =../lib
