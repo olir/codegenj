@@ -13,7 +13,7 @@ codegenj is a DBus Code Generator that helps to build Java APIs for DBus interfa
 
 ## EXAMPLES 
 
-See  [lbt4j](../lbt4j), a Linux Bluetooth Library for Java based on BlueZ's D-Bus interfaces.
+See  [lbt4j](https://github.com/olir/lbt4j), a Linux Bluetooth Library for Java based on BlueZ's D-Bus interfaces.
 
 ## Build
 
