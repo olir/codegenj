@@ -24,7 +24,7 @@ $$$library$$$-codegen.c: $(IDIR)/%.h
 	gdbus-codegen --generate-c-code=$$$library$$$-codegen --c-generate-object-manager --c-namespace= --interface-prefix=$$$iprefix$$$ ../classes/$$$xmlfile$$$
 
 $(ODIR):
-    mkdir $@
+	mkdir $@
 	
 $(ODIR)/%.o: %.c $(DEPS) $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
