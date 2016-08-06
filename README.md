@@ -10,6 +10,11 @@ codegenj - DBus Code Generator for Java APIs
 codegenj is a DBus Code Generator that helps to build Java APIs for DBus interfaces. The tool reads [D-Bus Introspection XML] (https://dbus.freedesktop.org/doc/dbus-specification.html#introspection-format)
  files and generates maven projects. It depends on [gdbus-codegen](https://developer.gnome.org/gio/stable/gdbus-codegen.html). 
 
+
+## EXAMPLES 
+
+See  [lbt4j](../lbt4j), a Linux Bluetooth Library for Java based on BlueZ's D-Bus interfaces.
+
 ## Build
 
 ### Maven
@@ -22,11 +27,4 @@ Open the project documentation in your web browser on http://localhost:9000
 or open it without site:run under
 
 > target/site/index.html
- 
-## HOWTO
 
-TODO: [Instructions](src/site/markdown/instructions.md).
- 
-## Notice
-
-TODO: [Notice](Notice.html) and "Dependencies" in site docs.
