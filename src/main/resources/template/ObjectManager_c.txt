@@ -103,7 +103,7 @@
 		NativeReference *_nref = malloc( sizeof(*_nref) );
 		_nref->value = (GObject *)interface;
 		jobject _bb = (*env)->NewDirectByteBuffer(env, (void*)_nref, sizeof(NativeReference));
-		jclass cls = (*env)->FindClass(env, "olir/codegenj/ObjectManager");
+		jclass cls = (*env)->FindClass(env, "de/serviceflow/codegenj/ObjectManager");
   		jmethodID mid = (*env)->GetStaticMethodID(env, cls, "dispatchObjectManagerSignal", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;)V");
   		(*env)->CallStaticVoidMethod(env, cls, mid, _signalname, _objectpath, _name, _bb);
 		detachCurrentThread();
@@ -123,7 +123,7 @@
 		NativeReference *_nref = malloc( sizeof(*_nref) );
 		_nref->value = (GObject *)interface;
 		jobject _bb = (*env)->NewDirectByteBuffer(env, (void*)_nref, sizeof(NativeReference));
-		jclass cls = (*env)->FindClass(env, "olir/codegenj/ObjectManager");
+		jclass cls = (*env)->FindClass(env, "de/serviceflow/codegenj/ObjectManager");
   		jmethodID mid = (*env)->GetStaticMethodID(env, cls, "dispatchObjectManagerSignal", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;)V");
   		(*env)->CallStaticVoidMethod(env, cls, mid, _signalname, _objectpath, _name, _bb);
 		detachCurrentThread();
@@ -138,7 +138,7 @@
 		JNIEnv *env = attachCurrentThread();
 	    jstring _signalname = (*env)->NewStringUTF(env, "object-added");
 	    jstring _objectpath = (*env)->NewStringUTF(env, objectpath);
-		jclass cls = (*env)->FindClass(env, "olir/codegenj/ObjectManager");
+		jclass cls = (*env)->FindClass(env, "de/serviceflow/codegenj/ObjectManager");
   		jmethodID mid = (*env)->GetStaticMethodID(env, cls, "dispatchObjectManagerSignal", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;)V");
   		(*env)->CallStaticVoidMethod(env, cls, mid, _signalname, _objectpath, NULL, NULL);
 		detachCurrentThread();
@@ -161,7 +161,7 @@
 		JNIEnv *env = attachCurrentThread();
 	    jstring _signalname = (*env)->NewStringUTF(env, "object-removed");
 	    jstring _objectpath = (*env)->NewStringUTF(env, objectpath);
-		jclass cls = (*env)->FindClass(env, "olir/codegenj/ObjectManager");
+		jclass cls = (*env)->FindClass(env, "de/serviceflow/codegenj/ObjectManager");
   		jmethodID mid = (*env)->GetStaticMethodID(env, cls, "dispatchObjectManagerSignal", 
   				"(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;)V");
   		(*env)->CallStaticVoidMethod(env, cls, mid, _signalname, _objectpath, NULL, NULL);
@@ -217,8 +217,8 @@
 	}
 
 	    
-JNIEXPORT void JNICALL Java_olir_codegenj_ObjectManager__1init(JNIEnv *env, jobject thisObj, jstring objectpath) {
-	jclass cls = (*env)->FindClass(env, "olir/codegenj/ObjectManager");
+JNIEXPORT void JNICALL Java_de_serviceflow_codegenj_ObjectManager__1init(JNIEnv *env, jobject thisObj, jstring objectpath) {
+	jclass cls = (*env)->FindClass(env, "de/serviceflow/codegenj/ObjectManager");
 	jmethodID mid = (*env)->GetStaticMethodID(env, cls, "getLogLevelIntValue", "()I");
 	loglevel = (*env)->CallStaticIntMethod(env, cls, mid);
 
@@ -269,7 +269,7 @@ JNIEXPORT void JNICALL Java_olir_codegenj_ObjectManager__1init(JNIEnv *env, jobj
     initial_objects = g_dbus_object_manager_get_objects(_client);
 }
 
-JNIEXPORT void JNICALL Java_olir_codegenj_ObjectManager__1run(JNIEnv *env, jobject thisObj) {
+JNIEXPORT void JNICALL Java_de_serviceflow_codegenj_ObjectManager__1run(JNIEnv *env, jobject thisObj) {
 	g_list_free_full (initial_objects, g_object_unref);
 
     jclass _cls = (*env)->GetObjectClass(env, thisObj);
@@ -285,7 +285,7 @@ JNIEXPORT void JNICALL Java_olir_codegenj_ObjectManager__1run(JNIEnv *env, jobje
     manager_thread = g_thread_new(NULL, start_thread, td);    
 }
  
-JNIEXPORT void JNICALL Java_olir_codegenj_ObjectManager__1destroy(JNIEnv *env, jobject thisObj) {
+JNIEXPORT void JNICALL Java_de_serviceflow_codegenj_ObjectManager__1destroy(JNIEnv *env, jobject thisObj) {
     g_thread_new(NULL, exit_thread, NULL);
 
 
@@ -299,7 +299,7 @@ JNIEXPORT void JNICALL Java_olir_codegenj_ObjectManager__1destroy(JNIEnv *env, j
     free(_nref);
 }
 
-JNIEXPORT jobjectArray JNICALL Java_olir_codegenj_ObjectManager_getProxyObjects(JNIEnv *env, jobject thisObj, jstring interfacename, jboolean initial) {
+JNIEXPORT jobjectArray JNICALL Java_de_serviceflow_codegenj_ObjectManager_getProxyObjects(JNIEnv *env, jobject thisObj, jstring interfacename, jboolean initial) {
 	const gchar *_interfacename = (*env)->GetStringUTFChars(env, interfacename, 0);
 	
     jclass _cls = (*env)->GetObjectClass(env, thisObj);
@@ -375,7 +375,7 @@ JNIEXPORT jobjectArray JNICALL Java_olir_codegenj_ObjectManager_getProxyObjects(
 	return(ret);
 }
 
-JNIEXPORT jstring JNICALL Java_olir_codegenj_ObjectManager_getObjectPath(JNIEnv *env, jobject thisObj, jobject bb) {
+JNIEXPORT jstring JNICALL Java_de_serviceflow_codegenj_ObjectManager_getObjectPath(JNIEnv *env, jobject thisObj, jobject bb) {
     NativeReference* _nref = (NativeReference*) (*env)->GetDirectBufferAddress(env, bb);
     GDBusInterface  *_client = (GDBusInterface  *)_nref->value;
     // const gchar *name = g_dbus_proxy_get_interface_name (G_DBUS_PROXY (_client));
@@ -384,7 +384,7 @@ JNIEXPORT jstring JNICALL Java_olir_codegenj_ObjectManager_getObjectPath(JNIEnv 
     return (*env)->NewStringUTF(env, path); 
 }
 
-JNIEXPORT void JNICALL Java_olir_codegenj_ObjectManager_dump(JNIEnv *env, jobject thisObj) {
+JNIEXPORT void JNICALL Java_de_serviceflow_codegenj_ObjectManager_dump(JNIEnv *env, jobject thisObj) {
 
     jclass _cls = (*env)->GetObjectClass(env, thisObj);
     jfieldID _fid = (*env)->GetFieldID(env, _cls, "_client", "Ljava/lang/Object;");
