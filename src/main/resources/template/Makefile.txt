@@ -23,7 +23,10 @@ $(IDIR)/%.h:
 $$$library$$$-codegen.c: $(IDIR)/%.h
 	gdbus-codegen --generate-c-code=$$$library$$$-codegen --c-generate-object-manager --c-namespace= --interface-prefix=$$$iprefix$$$ ../classes/$$$xmlfile$$$
 
-$(ODIR)/%.o: %.c $(DEPS)
+$(ODIR):
+    mkdir $@
+	
+$(ODIR)/%.o: %.c $(DEPS) $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 lib$$$library$$$.so.1.0: $(OBJ)
@@ -31,7 +34,8 @@ lib$$$library$$$.so.1.0: $(OBJ)
 
 all: lib$$$library$$$.so.1.0
 
-#clean:
-#	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ $$$library$$$-codegen.c $(IDIR)/*.h
-#	mkdir $(ODIR)
+.PHONY: clean
+
+clean:
+	rm -f $(ODIR)/*.o *~ lib$$$library$$$.so.1.0 $(INCDIR)/*~ $$$library$$$-codegen.c $(IDIR)/*.h
 
