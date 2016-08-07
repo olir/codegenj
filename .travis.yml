@@ -1,14 +1,6 @@
-# Travis settings for
-# https://api.travis-ci.org/olir/codegenj.svg
-
 language: java
-
 notifications:
   email: false
-
-script:
-  - mvn test jacoco:report  
-
- after_success:
+after_success:
   - mvn clean test jacoco:report coveralls:report
-
+ 
