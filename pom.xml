@@ -362,7 +362,16 @@
 					<timestampFormat>${maven.build.timestamp.format}</timestampFormat>
 				</configuration>				
 			</plugin>
-			<!-- travis -->
+			<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <check>true</check>
+                    <format>xml</format>
+                    <aggregate>true</aggregate>
+                </configuration>
+            </plugin>			
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
