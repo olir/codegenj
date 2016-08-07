@@ -15,6 +15,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss</maven.build.timestamp.format>
 	</properties>
 
 	<scm>
@@ -358,6 +359,7 @@
 				<artifactId>coveralls-maven-plugin</artifactId>
 				<version>4.2.0</version>
 				<configuration>
+					<timestampFormat>${maven.build.timestamp.format}</timestampFormat>
 					<repoToken>rIpE5Q655q4J9S6U8FHkLfEe8Q4zW8ydP</repoToken>
 				</configuration>				
 			</plugin>
@@ -365,7 +367,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.2.201409121644</version>
+				<version>0.7.6.201602180812</version>
 				<executions>
 					<execution>
 						<id>pre-unit-test</id>
