@@ -360,7 +360,6 @@
 				<version>4.2.0</version>
 				<configuration>
 					<timestampFormat>${maven.build.timestamp.format}</timestampFormat>
-					<repoToken>rIpE5Q655q4J9S6U8FHkLfEe8Q4zW8ydP</repoToken>
 				</configuration>				
 			</plugin>
 			<!-- travis -->
