@@ -25,8 +25,21 @@
 		<method name="Foo">
 			<arg name="result" type="aao" direction="out" />
 		</method>
+		<method name="Ox">
+			<arg name="result" type="as" direction="out" />
+		</method>
+		<method name="Oy">
+			<arg name="result" type="ao" direction="out" />
+		</method>
+		<method name="Oz">
+			<arg name="result" type="ab" direction="out" />
+		</method>
 		<method name="Oa">
 			<arg name="result" type="d" direction="out" />
+		</method>
+		<method name="Xy">
+			<arg name="qxy" type="?" direction="in" />
+			<arg name="result" type="?" direction="out" />
 		</method>
 		<method name="Oa">
 			<arg name="fb" type="as" direction="in" />
@@ -37,10 +50,13 @@
 		<property name="Bar" type="s" access="read" />
 		<property name="Pb" type="y" access="readwrite" />
 		<property name="Pd" type="s" access="readwrite" />
+		<property name="Pdb" type="ab" access="readwrite" />
 		<property name="Pf" type="o" access="readwrite" />
 		<property name="Pg" type="ao" access="readwrite" />
-		<property name="Ph" type="as" access="readwrite" />
+		<property name="Pg" type="ao" access="readwrite" />
+		<property name="goto" type="s" access="readwrite" />
 		<property name="Pi" type="ad" access="readwrite" />
+		<property name="Oops" type="?" access="readwrite" />
 		<property name="parent" type="o" access="read">
 			<annotation name="de.serviceflow.codegenj.ParentAPI" value="my.dum.Dummy1" />
 		</property>
