@@ -70,7 +70,7 @@ public class CodegenJ {
 		instance = this;
 	}
 
-	private void run(String[] args) {
+	public void run(String[] args) {
 		String xmlfile;
 		try {
 			initHelper.initializeProcessing();

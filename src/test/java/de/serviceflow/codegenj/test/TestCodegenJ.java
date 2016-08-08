@@ -36,10 +36,11 @@ public class TestCodegenJ {
 				"my.dum.",
 				new File(".").getAbsolutePath()
 						+ "/src/test/resources/dum_my.xml" };
-		System.err.println("Usage: CodegenJ [-d <destination>] -l <library> -b <busname> -i <interfaceprefix> <xmlfile>");
+		//System.err.println("Usage: CodegenJ [-d <destination>] -l <library> -b <busname> -i <interfaceprefix> <xmlfile>");
 
 		CodegenJ testSubject = new CodegenJ();
-
+		testSubject.run(args);
+/*
 		testSubject.initHelper.initializeProcessing();
 		System.out.println("- initializeProcessing() OK");
 
@@ -53,6 +54,7 @@ public class TestCodegenJ {
 
 		testSubject.generateCode(node, null);
 		System.out.println("*** test successful ***");
+		*/
 	}
 
 }
