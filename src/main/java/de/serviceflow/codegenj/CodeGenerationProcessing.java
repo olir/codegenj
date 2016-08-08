@@ -138,10 +138,11 @@ public class CodeGenerationProcessing {
 										javareturntype = javareturntype + "[]";
 									}
 									if (javareturntype == null
-											|| jnireturntype == null) {
+											|| jnireturntype == null || ctype==null) {
 										supported = false;
 										javareturntype = "?";
 										jnireturntype = "?";
+										ctype = "?";
 										// throw new Error(
 										// "Return wire type unsupperted: '"
 										// + a.getType()
