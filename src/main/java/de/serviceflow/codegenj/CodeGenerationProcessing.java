@@ -781,9 +781,10 @@ public class CodeGenerationProcessing {
 							String javaargtype = javaargbasetype;
 							String jniargtype = wireToJniTypeMap.get(wireType);
 							String ctype = wireToCTypeMap.get(wireType);
-							if (javaargbasetype == null) {
+							if (javaargbasetype == null || ctype == null) {
 								supported = false;
 								javaargbasetype = "?";
+								ctype = "?";
 								// throw new Error(
 								// "Wire type unsupperted for arg : "
 								// + a.getName()
