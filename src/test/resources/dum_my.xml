@@ -6,9 +6,38 @@
 		<!-- This method lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
 		     sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
 		     sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. -->
-		<method name="Foo" />
+		<method name="Boo" />
+		<!-- This method lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+		     sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+		     sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. -->
+		<method name="Foo">
+			<arg name="result" type="s" direction="out" />
+			<arg name="alpha" type="o" direction="in" />
+			<arg name="beta" type="s" direction="in" />
+			<arg name="beta" type="y" direction="in" />
+			<arg name="beta" type="ay" direction="in" />
+			<arg name="beta" type="b" direction="in" />
+			<arg name="beta" type="q" direction="in" />
+			<arg name="beta" type="u" direction="in" />
+			<arg name="beta" type="t" direction="in" />
+			<arg name="beta" type="d" direction="in" />
+		</method>
+		<method name="Foo">
+			<arg name="result" type="aao" direction="out" />
+		</method>
 		<!-- The bar property. -->
 		<property name="Bar" type="s" access="read" />
+		<property name="parent" type="o" access="read">
+			<annotation name="de.serviceflow.codegenj.ParentAPI" value="my.dum.Dummy1" />
+		</property>
+		<property name="Childs" type="ao" access="read">
+			<annotation name="de.serviceflow.codegenj.CollectorAPI" value="my.dum.Dummy1" />
+		</property>
+		<annotation name="de.serviceflow.codegenj.CollectorAPI" value="my.dum.Dummy1#*getDummies" />
 		<annotation name="de.serviceflow.codegenj.CollectorAPI" value="de.serviceflow.codegenj.ObjectManager#getDummies" />
 	</interface>
+	<interface name="my.dum.DummyRenote1">
+		<annotation name="de.serviceflow.codegenj.SkeletonAPI" value="" />
+	</interface>
+	
 </node>
