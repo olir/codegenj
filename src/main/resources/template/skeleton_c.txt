@@ -209,7 +209,7 @@ gpointer start_export_thread (void *data) {
     export_loop = g_main_loop_new(NULL, FALSE);	  
    
 	g_bus_own_name (G_BUS_TYPE_SESSION,  // G_BUS_TYPE_SYSTEM
-	  ((ExportThreadData *) data)->gpath,
+	  "de.serviceflow.codegenj.$$$interface.uname$$$",   // different to path
 	  G_BUS_NAME_OWNER_FLAGS_ALLOW_REPLACEMENT, // G_BUS_NAME_OWNER_FLAGS_NONE,
 	  on_bus_acquired,
 	  on_name_acquired,
