@@ -37,7 +37,7 @@ codegenj defines some new annotations that can be used to improve the API it gen
         <th>name</th><th>value</th><th>Description</th><th>context</th>
     </tr>
     <tr>
-        <td>de.serviceflow.codegenj.CollectorAPI</td><td>classname#methodname</td><td>Creates an getter method in the named interface or objectmanager (de.serviceflow.codegenj.ObjectManager) that returns "top-level" interfaces from D-Bus of the type the annotation is placed in and returns a collection of them.</td><td>interface</td>
+        <td rowspan=3>de.serviceflow.codegenj.CollectorAPI</td><td>classname#methodname</td><td>Creates an getter method in the named interface or objectmanager (de.serviceflow.codegenj.ObjectManager) that returns "top-level" interfaces from D-Bus of the type the annotation is placed in and returns a collection of them.</td><td>interface</td>
     </tr>
     <tr>
         <td>de.serviceflow.codegenj.CollectorAPI</td><td>classname#<b>*</b>methodname</td><td>Creates an getter method in the named interface or objectmanager (de.serviceflow.codegenj.ObjectManager) that queries "current" interfaces from D-Bus of the type the annotation is placed in and returns a collection of them.</td><td>interface</td>
