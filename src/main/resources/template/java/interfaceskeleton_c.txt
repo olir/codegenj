@@ -241,7 +241,7 @@ JNIEXPORT jobject JNICALL Java_$$$interface.jname$$$__1init(JNIEnv *env, jobject
 	GDBusConnection *connection = g_bus_get_sync (G_BUS_TYPE_SYSTEM,
                 NULL,
                 &_error);
-	if (connection==null || _error!=NULL) {
+	if (connection==NULL || _error!=NULL) {
 	    if (_error!=NULL) {
 		   jclass _eClass = (*env)->FindClass(env, "java/lang/Error");
 	       (*env)->ThrowNew(env, _eClass, _error->message);
