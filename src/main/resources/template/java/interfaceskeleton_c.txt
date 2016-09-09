@@ -160,7 +160,7 @@ void $$$interface.jname$$$Skeleton_on_bus_acquired(GDBusConnection *connection, 
 
         g_print ( "Registering object at %s\n", _path );
 
-	GDBusInterfaceInfo *info = agent1_interface_info();
+	GDBusInterfaceInfo *info = $$$interface.cname$$$_interface_info();
 
 	guint registration_id;
 	GError *_error = NULL;
@@ -224,43 +224,57 @@ gpointer $$$interface.jname$$$Skeleton_start_export_thread (void *data) {
 
 
 JNIEXPORT jobject JNICALL Java_$$$interface.jname$$$__1init(JNIEnv *env, jobject thisObj, jstring path) {
-//	int handler_id;
-//##for method##
-//	handler_id = g_signal_connect (skeleton, "$$$method.jname$$$", (GCallback) on_handle_$$$interface.jname$$$_$$$method.jname$$$, &thisObj);
-//	if (handler_id <= 0) {
-//		   jclass _eClass = (*env)->FindClass(env, "java/io/IOException");
-//	       (*env)->ThrowNew(env, _eClass, "Failed to connect signal handler for signal '$$$method.jname$$$'.");
-//		   (*env)->DeleteLocalRef(env, _eClass);
-//	}
-//##end##
 
 	const gchar *_path = (*env)->GetStringUTFChars(env, path, NULL);
 
+	$$$interface.uname$$$ *skeleton = $$$interface.cname$$$_skeleton_new();
+	$$$interface.cname$$$_set_verbose(skeleton, TRUE);
+
 /*
-//	$$$interface.uname$$$ *skeleton = $$$interface.cname$$$_skeleton_new();
-    GError *_error = NULL;
-	$$$interface.uname$$$ *skeleton = $$$interface.cname$$$_proxy_new_for_bus_sync (
-	            G_BUS_TYPE_SYSTEM,
-	            G_DBUS_PROXY_FLAGS_NONE,
-	            "$$$busname$$$",               // bus name
-	            _path,                         // object path 
-	            NULL,                          // GCancellable*
-	            &_error);
-    if (_error!=NULL) {
-	   jclass _eClass = (*env)->FindClass(env, "java/lang/Error");
-       (*env)->ThrowNew(env, _eClass, _error->message);
-	   (*env)->DeleteLocalRef(env, _eClass);	      
-       g_error_free(_error);
-    }
+	g_signal_connect (interface,
+                    "handle-hello-world",
+                    G_CALLBACK (on_handle_hello_world),
+                    some_user_data);
 */
 
-	// Start export Thread
-	ExportThreadData *td = malloc( sizeof(*td) );
-	//td->gskeleton = skeleton;
-	td->javaInstance = &thisObj;
-	td->gpath = _path;
-    $$$interface.jname$$$Skeleton_export_thread = g_thread_new(NULL, $$$interface.jname$$$Skeleton_start_export_thread, td);
+	GError *_error = NULL;
+	GDBusConnection *connection = g_bus_get_sync (G_BUS_TYPE_SYSTEM,
+                NULL,
+                &_error);
+	if (connection==null || _error!=NULL) {
+	    if (_error!=NULL) {
+		   jclass _eClass = (*env)->FindClass(env, "java/lang/Error");
+	       (*env)->ThrowNew(env, _eClass, _error->message);
+		   (*env)->DeleteLocalRef(env, _eClass);	      
+	       g_error_free(_error);
+	    }
+	    else {
+		   jclass _eClass = (*env)->FindClass(env, "java/lang/Error");
+	       (*env)->ThrowNew(env, _eClass, "Call to g_bus_get_sync() failed. Reason unknown.");
+		   (*env)->DeleteLocalRef(env, _eClass);	      
+	    }
+	}
 
+	_error = NULL;
+	if (!g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (skeleton),
+                                         connection,
+                                         _path,
+                                         &_error)) {
+	    if (_error!=NULL) {
+		   jclass _eClass = (*env)->FindClass(env, "java/lang/Error");
+	       (*env)->ThrowNew(env, _eClass, _error->message);
+		   (*env)->DeleteLocalRef(env, _eClass);	      
+	       g_error_free(_error);
+	    }
+	    else {
+		   jclass _eClass = (*env)->FindClass(env, "java/lang/Error");
+	       (*env)->ThrowNew(env, _eClass, "Call to g_dbus_interface_skeleton_export() failed. Reason unknown.");
+		   (*env)->DeleteLocalRef(env, _eClass);	      
+	    }
+    }
+    
+	// ...
+    
 	NativeReference *_nref = malloc( sizeof(*_nref) );
 	//_nref->value = (GObject *)skeleton;
 	jobject _bb = (*env)->NewDirectByteBuffer(env, (void*)_nref, sizeof(NativeReference));
@@ -270,5 +284,6 @@ JNIEXPORT jobject JNICALL Java_$$$interface.jname$$$__1init(JNIEnv *env, jobject
 
 
 JNIEXPORT void JNICALL Java_$$$interface.jname$$$__1destroy(JNIEnv *env, jobject thisObj) {
+	// TODO Use g_dbus_interface_skeleton_unexport() to unexport the object.
 }
 

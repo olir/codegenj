@@ -160,7 +160,7 @@ void $$$interface.jname$$$CB_on_bus_acquired(GDBusConnection *connection, const 
 
         g_print ( "Registering object at %s\n", _path );
 
-	GDBusInterfaceInfo *info = agent1_interface_info();
+	GDBusInterfaceInfo *info = $$$interface.cname$$$_interface_info();
 
 	guint registration_id;
 	GError *_error = NULL;
