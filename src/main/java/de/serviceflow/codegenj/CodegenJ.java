@@ -310,6 +310,13 @@ public class CodegenJ {
 		 * Create Interface-JNI Layer with .c and .java files
 		 */
 		for (Interface i : node.getInterfaces()) {
+			boolean isSkeleton = false;
+			for (Annotation a : i.getAnnotations()) {
+				if ("de.serviceflow.codegenj.SkeletonAPI".equals(a.getName())) {
+					isSkeleton = true;
+				}
+			}
+			
 			initHelper.processInterface(parameters, i);
 
 			InterfaceSourceGenerator itp = new InterfaceSourceGenerator(i,
@@ -328,9 +335,27 @@ public class CodegenJ {
 			classlist.append(' ');
 			classlist.append(parameters.get("interface.name"));
 			
-			objFiles.append(' ');
-			objFiles.append(parameters.get("interface.uname"));
-			objFiles.append(".o");
+			if (isSkeleton) {
+				classlist.append(' ');		
+				classlist.append(parameters.get("interface.name")+"CB");
+				
+				objFiles.append(' ');
+				objFiles.append(parameters.get("interface.uname"));
+				objFiles.append("CB.o");
+			}
+			else {
+				classlist.append(' ');		
+				classlist.append(parameters.get("interface.name")+"Proxy");
+				classlist.append(' ');
+				classlist.append(parameters.get("interface.name")+"Skeleton");
+				
+				objFiles.append(' ');
+				objFiles.append(parameters.get("interface.uname"));
+				objFiles.append("Proxy.o");
+				objFiles.append(' ');
+				objFiles.append(parameters.get("interface.uname"));
+				objFiles.append("Skeleton.o");
+			}
 		}
 		parameters.remove("interface.name");
 

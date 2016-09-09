@@ -121,12 +121,12 @@ public class InterfaceSourceGenerator {
 			t.open();
 			try {
 				w = new PrintWriter(new FileOutputStream(jnidir + "/"
-						+ fileBaseName + ".c"));
+						+ fileBaseName + "CB.c"));
 			} catch (FileNotFoundException e) {
 				throw new Error("Can't create output file: "
 						+ e.getLocalizedMessage());
 			}
-			w.println("// " + interfaceDef.getName() + ".c");
+			w.println("// " + interfaceDef.getName() + "CB.c");
 			try {
 				new TemplateBlock(interfaceDef, parameters, t, w).process();
 			} finally {
@@ -177,18 +177,36 @@ public class InterfaceSourceGenerator {
 			t.open();
 			try {
 				w = new PrintWriter(new FileOutputStream(jnidir + "/"
-						+ fileBaseName + ".c"));
+						+ fileBaseName + "Proxy.c"));
 			} catch (FileNotFoundException e) {
 				throw new Error("Can't create output file: "
 						+ e.getLocalizedMessage());
 			}
-			w.println("// " + interfaceDef.getName() + ".c");
+			w.println("// " + interfaceDef.getName() + "Proxy.c");
 			try {
 				new TemplateBlock(interfaceDef, parameters, t, w).process();
 			} finally {
 				w.close();
 			}
 			t.close();
+			
+			t = new TemplateParser("template/java/interfaceskeleton_c.txt");
+			t.open();
+			try {
+				w = new PrintWriter(new FileOutputStream(jnidir + "/"
+						+ fileBaseName + "Skeleton.c"));
+			} catch (FileNotFoundException e) {
+				throw new Error("Can't create output file: "
+						+ e.getLocalizedMessage());
+			}
+			w.println("// " + interfaceDef.getName() + "Skeleton.c");
+			try {
+				new TemplateBlock(interfaceDef, parameters, t, w).process();
+			} finally {
+				w.close();
+			}
+			t.close();
+			
 		}
 
 	}
