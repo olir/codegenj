@@ -43,11 +43,50 @@ typedef struct NativeReferenceStructure {
   GObject *value;
 } NativeReference;
 
+
+
+
+typedef struct _MyObject MyObject;
+
+struct _MyObject
+{
+  GObject parent_instance;
+
+};
+
+static GType my_object_get_type (void);
+G_DEFINE_TYPE (MyObject, my_object, G_TYPE_OBJECT);
+
+static void
+my_object_finalize (GObject *object)
+{
+  MyObject *myobj = (MyObject*)object;
+
+
+
+  G_OBJECT_CLASS (my_object_parent_class)->finalize (object);
+}
+
+static void
+my_object_init (MyObject *object)
+{
+
+}
+
+static void
+my_object_class_init (MyObjectClass *class)
+{
+  GObjectClass *gobject_class = G_OBJECT_CLASS (class);
+
+  gobject_class->finalize = my_object_finalize;
+}
+
 	GThread *$$$interface.jname$$$Skeleton_export_thread;
 	GMainLoop *$$$interface.jname$$$Skeleton_export_loop;
 
 	struct ExportThreadDataStructure;
 	typedef struct ExportThreadDataStructure { 
+		MyObject *obj;
 //		$$$interface.uname$$$ *gskeleton;
 		jobject *javaInstance;
 	    const gchar *gpath;
@@ -174,7 +213,7 @@ void $$$interface.jname$$$Skeleton_on_bus_acquired(GDBusConnection *connection, 
                                                         _path,
                                                         info, 		// introspection_data->interfaces[0],
                                                         &$$$interface.jname$$$Skeleton_interface_vtable,
-                                                        data,      // user_data
+                                                        data->obj,      // user_data
                                                         NULL,      // user_data_free_func
 														&_error);
     if (registration_id<=0) {
@@ -227,14 +266,15 @@ JNIEXPORT jobject JNICALL Java_$$$interface.jname$$$Skeleton__1init(JNIEnv *env,
 
 	const gchar *_path = (*env)->GetStringUTFChars(env, path, NULL);
 
+	MyObject *myobj = g_object_new (my_object_get_type (), NULL);
+
+/***************
 	$$$interface.uname$$$ *skeleton = $$$interface.cname$$$_skeleton_new();
 
-/*
-	g_signal_connect (interface,
-                    "handle-hello-world",
-                    G_CALLBACK (on_handle_hello_world),
-                    some_user_data);
-*/
+//	g_signal_connect (interface,
+//                    "handle-hello-world",
+//                    G_CALLBACK (on_handle_hello_world),
+//                    some_user_data);
 
 	GError *_error = NULL;
 	GDBusConnection *connection = g_bus_get_sync (G_BUS_TYPE_SYSTEM,
@@ -271,8 +311,15 @@ JNIEXPORT jobject JNICALL Java_$$$interface.jname$$$Skeleton__1init(JNIEnv *env,
 		   (*env)->DeleteLocalRef(env, _eClass);	      
 	    }
     }
+***************/
+
     
-	// ...
+	// Start export Thread
+	ExportThreadData *td = malloc( sizeof(*td) );
+	td->obj = myobj;
+	td->javaInstance = &thisObj;
+	td->gpath = _path;
+    $$$interface.jname$$$Skeleton_export_thread = g_thread_new(NULL, $$$interface.jname$$$Skeleton_start_export_thread, td);
     
 	NativeReference *_nref = malloc( sizeof(*_nref) );
 	//_nref->value = (GObject *)skeleton;
