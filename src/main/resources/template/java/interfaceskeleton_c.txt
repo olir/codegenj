@@ -55,7 +55,7 @@ typedef struct NativeReferenceStructure {
 
 /*
 ##for method##
-    void on_handle_$$$interface.jname$$$_$$$method.jname$$$ ($$$interface.uname$$$ *skeleton,
+    void on_handle_$$$interface.jname$$$Skeleton_$$$method.jname$$$ ($$$interface.uname$$$ *skeleton,
         GDBusObject *object, gpointer user_data) {
         
         jobject *thisObj = (jobject *)user_data;
@@ -223,7 +223,7 @@ gpointer $$$interface.jname$$$Skeleton_start_export_thread (void *data) {
 }
 
 
-JNIEXPORT jobject JNICALL Java_$$$interface.jname$$$__1init(JNIEnv *env, jobject thisObj, jstring path) {
+JNIEXPORT jobject JNICALL Java_$$$interface.jname$$$Skeleton__1init(JNIEnv *env, jobject thisObj, jstring path) {
 
 	const gchar *_path = (*env)->GetStringUTFChars(env, path, NULL);
 
@@ -283,7 +283,7 @@ JNIEXPORT jobject JNICALL Java_$$$interface.jname$$$__1init(JNIEnv *env, jobject
 }
 
 
-JNIEXPORT void JNICALL Java_$$$interface.jname$$$__1destroy(JNIEnv *env, jobject thisObj) {
+JNIEXPORT void JNICALL Java_$$$interface.jname$$$Skeleton__1destroy(JNIEnv *env, jobject thisObj) {
 	// TODO Use g_dbus_interface_skeleton_unexport() to unexport the object.
 }
 
