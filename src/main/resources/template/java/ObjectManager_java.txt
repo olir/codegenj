@@ -234,7 +234,11 @@ $$$api.remove$$$
 		void objectRemoved(ObjectManager m, String op);
 	}
 	
-	public static class DBusInterfaceProxy {
+	public static interface DBusInterface {
+		public String getObjectPath();		
+	}
+
+	public static class DBusInterfaceProxy implements DBusInterface {
         private String objectpath;
 
 		protected DBusInterfaceProxy() {

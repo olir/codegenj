@@ -31,11 +31,12 @@ $$$interface.pcode$$$
 import java.util.List;
 import java.util.Map;
 import java.io.IOException;
+import de.serviceflow.codegenj.ObjectManager.DBusInterface;
 
 /**
  * interface for $$$interface.name$$$
  */  
-public interface $$$interface.uname$$$ {
+public interface $$$interface.uname$$$ extends DBusInterface {
  
 ###for de.serviceflow.codegenj.CollectorAPI###
     public List<$$$cinterfacename$$$> $$$mname$$$();
