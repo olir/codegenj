@@ -45,8 +45,13 @@ typedef struct NativeReferenceStructure {
 
 
 
-
+typedef struct _MyObjectClass MyObjectClass;
 typedef struct _MyObject MyObject;
+
+struct _MyObjectClass
+{
+  GObjectClass parent_class;
+};
 
 struct _MyObject
 {
