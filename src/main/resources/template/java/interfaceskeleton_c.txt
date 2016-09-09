@@ -228,7 +228,6 @@ JNIEXPORT jobject JNICALL Java_$$$interface.jname$$$Skeleton__1init(JNIEnv *env,
 	const gchar *_path = (*env)->GetStringUTFChars(env, path, NULL);
 
 	$$$interface.uname$$$ *skeleton = $$$interface.cname$$$_skeleton_new();
-	$$$interface.cname$$$_set_verbose(skeleton, TRUE);
 
 /*
 	g_signal_connect (interface,
