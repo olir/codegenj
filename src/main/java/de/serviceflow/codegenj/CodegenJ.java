@@ -41,6 +41,10 @@ import org.xml.sax.SAXException;
 import de.serviceflow.codegenj.Node.Interface;
 import de.serviceflow.codegenj.Node.Interface.Property;
 import de.serviceflow.codegenj.Node.Interface.Member.Annotation;
+import de.serviceflow.codegenj.java.CodeGenerationProcessing;
+import de.serviceflow.codegenj.java.InterfaceSourceGenerator;
+import de.serviceflow.codegenj.java.MakefileGenerator;
+import de.serviceflow.codegenj.java.ObjectManagerGenerator;
 
 /**
  * Generate Java Code base on XML Introspection Data Format and gdbus-codegen.

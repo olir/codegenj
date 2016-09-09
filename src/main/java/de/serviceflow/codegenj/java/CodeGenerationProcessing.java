@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.serviceflow.codegenj;
+package de.serviceflow.codegenj.java;
 
 import java.io.PrintWriter;
 import java.text.MessageFormat;
@@ -24,7 +24,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import de.serviceflow.codegenj.Block;
+import de.serviceflow.codegenj.CaseBlock;
+import de.serviceflow.codegenj.ForBlock;
+import de.serviceflow.codegenj.Naming;
+import de.serviceflow.codegenj.Node;
+import de.serviceflow.codegenj.ObjectiveBlockHandler;
+import de.serviceflow.codegenj.ProcessingObjective;
 import de.serviceflow.codegenj.Node.Interface;
+import de.serviceflow.codegenj.Node.Interface.Member;
 import de.serviceflow.codegenj.Node.Interface.Method;
 import de.serviceflow.codegenj.Node.Interface.Property;
 import de.serviceflow.codegenj.Node.Interface.Member.Annotation;
@@ -431,7 +439,7 @@ public class CodeGenerationProcessing {
 							initCode.append("    	");
 							initCode.append(p.getParameters().get(
 									"interface.name"));
-							initCode.append(".initialize");
+							initCode.append("Proxy.initialize");
 							initCode.append(name);
 							initCode.append("Mapping();\n");
 
@@ -440,7 +448,7 @@ public class CodeGenerationProcessing {
 							addCode.append("\".equals(interfaceName)) { ");
 							addCode.append(p.getParameters().get(
 									"interface.name"));
-							addCode.append(".add");
+							addCode.append("Proxy.add");
 							addCode.append(name);
 							addCode.append("Object(objectpath,  proxy); }\n");
 
@@ -449,7 +457,7 @@ public class CodeGenerationProcessing {
 							removeCode.append("\".equals(interfaceName)) { ");
 							removeCode.append(p.getParameters().get(
 									"interface.name"));
-							removeCode.append(".remove");
+							removeCode.append("Proxy.remove");
 							removeCode.append(name);
 							removeCode
 									.append("Object(objectpath,  proxy); }\n");

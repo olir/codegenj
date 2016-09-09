@@ -120,7 +120,7 @@ public class ObjectManager {
 	 static private Map<String, $$$interfacename$$$> $$$vname$$$Map = null;
 
     static public void add$$$cname$$$Object(String path, Object proxy) {
-   			$$$interfacename$$$ n = new $$$interfacename$$$(proxy);
+   			$$$interfacename$$$Proxy n = new $$$interfacename$$$Proxy(proxy);
    			if (path==null)
    				path = ObjectManager.getInstance().getObjectPath(proxy);
     		$$$vname$$$Map.put(path, n);
@@ -130,7 +130,7 @@ public class ObjectManager {
     static public void remove$$$cname$$$Object(String path, Object proxy) {
    			if (path==null)
 	   			path = ObjectManager.getInstance().getObjectPath(proxy);
-    		$$$interfacename$$$  n = $$$vname$$$Map.get(path);
+    		$$$interfacename$$$Proxy n = ($$$interfacename$$$Proxy)$$$vname$$$Map.get(path);
     		n._destroy();
     		$$$vname$$$Map.remove(path);
 	}
@@ -234,10 +234,10 @@ $$$api.remove$$$
 		void objectRemoved(ObjectManager m, String op);
 	}
 	
-	public static class DBusInterface {
+	public static class DBusInterfaceProxy {
         private String objectpath;
 
-		protected DBusInterface() {
+		protected DBusInterfaceProxy() {
 		}
 
 		public String getObjectPath() {

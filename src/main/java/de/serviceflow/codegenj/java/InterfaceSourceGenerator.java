@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.serviceflow.codegenj;
+package de.serviceflow.codegenj.java;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,7 +21,12 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.Map;
 
+import de.serviceflow.codegenj.Naming;
+import de.serviceflow.codegenj.Node;
+import de.serviceflow.codegenj.TemplateBlock;
+import de.serviceflow.codegenj.TemplateParser;
 import de.serviceflow.codegenj.Node.Interface;
+import de.serviceflow.codegenj.Node.Interface.Member;
 import de.serviceflow.codegenj.Node.Interface.Member.Annotation;
 
 /**
@@ -34,7 +39,7 @@ public class InterfaceSourceGenerator {
 	private final Map<String, String> parameters;
 	private String fileBaseName = null;
 	private boolean isSkeleton = false;
-	
+
 	public InterfaceSourceGenerator(Interface interfaceDef,
 			Map<String, String> parameters, String destination) {
 		this.interfaceDef = interfaceDef;
@@ -45,7 +50,7 @@ public class InterfaceSourceGenerator {
 	public void open() {
 		String uname = parameters.get("interface.uname");
 		fileBaseName = Naming.javaClassName(uname);
-		
+
 		for (Annotation a : interfaceDef.getAnnotations()) {
 			if ("de.serviceflow.codegenj.SkeletonAPI".equals(a.getName())) {
 				isSkeleton = true;
@@ -66,13 +71,10 @@ public class InterfaceSourceGenerator {
 		new File(jnihdir).mkdirs();
 
 		/**
-		 * Create Java file
+		 * Create Java Interface file
 		 */
 
-		if (isSkeleton)
-			t = new TemplateParser("template/skeleton_java.txt");
-		else
-			t = new TemplateParser("template/interface_java.txt");
+		t = new TemplateParser("template/java/interface_java.txt");
 		t.open();
 		try {
 			w = new PrintWriter(new FileOutputStream(dir + "/" + ppath
@@ -90,29 +92,104 @@ public class InterfaceSourceGenerator {
 		t.close();
 
 		/**
-		 * Create .c file. The .h file can be generated from compiled class file
-		 * by javah tool.
+		 * Create Java Proxy/Server/Skeleton file
 		 */
+		if (isSkeleton) {
+			t = new TemplateParser("template/java/skeleton_java.txt");
+			t.open();
+			try {
+				w = new PrintWriter(new FileOutputStream(dir + "/" + ppath
+						+ fileBaseName + "CB.java"));
+			} catch (FileNotFoundException e) {
+				throw new Error("Can't create output file: "
+						+ e.getLocalizedMessage());
+			}
 
-		if (isSkeleton)
-			t = new TemplateParser("template/skeleton_c.txt");
-		else
-			t = new TemplateParser("template/interface_c.txt");
-		t.open();
-		try {
-			w = new PrintWriter(new FileOutputStream(jnidir + "/"
-					+ fileBaseName + ".c"));
-		} catch (FileNotFoundException e) {
-			throw new Error("Can't create output file: "
-					+ e.getLocalizedMessage());
+			try {
+				new TemplateBlock(interfaceDef, parameters, t, w).process();
+			} finally {
+				w.close();
+			}
+			t.close();
+
+			/**
+			 * Create .c file. The .h file can be generated from compiled class
+			 * file by javah tool.
+			 */
+
+			t = new TemplateParser("template/java/skeleton_c.txt");
+			t.open();
+			try {
+				w = new PrintWriter(new FileOutputStream(jnidir + "/"
+						+ fileBaseName + ".c"));
+			} catch (FileNotFoundException e) {
+				throw new Error("Can't create output file: "
+						+ e.getLocalizedMessage());
+			}
+			w.println("// " + interfaceDef.getName() + ".c");
+			try {
+				new TemplateBlock(interfaceDef, parameters, t, w).process();
+			} finally {
+				w.close();
+			}
+			t.close();
+		} else {
+			t = new TemplateParser("template/java/interfaceproxy_java.txt");
+			t.open();
+			try {
+				w = new PrintWriter(new FileOutputStream(dir + "/" + ppath
+						+ fileBaseName + "Proxy.java"));
+			} catch (FileNotFoundException e) {
+				throw new Error("Can't create output file: "
+						+ e.getLocalizedMessage());
+			}
+			try {
+				new TemplateBlock(interfaceDef, parameters, t, w).process();
+			} finally {
+				w.close();
+			}
+			t.close();
+
+			
+			t = new TemplateParser("template/java/interfaceskeleton_java.txt");
+			t.open();
+			try {
+				w = new PrintWriter(new FileOutputStream(dir + "/" + ppath
+						+ fileBaseName + "Skeleton.java"));
+			} catch (FileNotFoundException e) {
+				throw new Error("Can't create output file: "
+						+ e.getLocalizedMessage());
+			}
+			try {
+				new TemplateBlock(interfaceDef, parameters, t, w).process();
+			} finally {
+				w.close();
+			}
+			t.close();
+
+
+			/**
+			 * Create .c file. The .h file can be generated from compiled class
+			 * file by javah tool.
+			 */
+
+			t = new TemplateParser("template/java/interfaceproxy_c.txt");
+			t.open();
+			try {
+				w = new PrintWriter(new FileOutputStream(jnidir + "/"
+						+ fileBaseName + ".c"));
+			} catch (FileNotFoundException e) {
+				throw new Error("Can't create output file: "
+						+ e.getLocalizedMessage());
+			}
+			w.println("// " + interfaceDef.getName() + ".c");
+			try {
+				new TemplateBlock(interfaceDef, parameters, t, w).process();
+			} finally {
+				w.close();
+			}
+			t.close();
 		}
-		w.println("// " + interfaceDef.getName() + ".c");
-		try {
-			new TemplateBlock(interfaceDef, parameters, t, w).process();
-		} finally {
-			w.close();
-		}
-		t.close();
 
 	}
 

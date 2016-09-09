@@ -34,20 +34,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Collections;
 import de.serviceflow.codegenj.ObjectManager;
-import de.serviceflow.codegenj.ObjectManager.DBusInterface;
+import de.serviceflow.codegenj.ObjectManager.DBusInterfaceProxy;
 import java.io.IOException;
 
 /**
  * D-Bus JNI Interface class for $$$interface.name$$$
  */  
-public abstract class $$$interface.uname$$$ extends DBusInterface {
+public abstract class $$$interface.uname$$$Skeleton extends DBusInterfaceProxy implements $$$interface.uname$$$ {
      static {
         System.loadLibrary("$$$library$$$"); // Load native library lib$$$library$$$.so at runtime
      }
  
      // private Object _proxy = null;
 
-  	 public $$$interface.uname$$$(String path) {
+  	 public $$$interface.uname$$$Skeleton(String path) {
     	_init(path);
      }    
     

@@ -22,11 +22,11 @@ import de.serviceflow.codegenj.Node.Interface;
 
 public class TemplateBlock extends Block {
 
-	TemplateBlock(Interface interfaceDef, Map<String, String> parameters, TemplateParser t, PrintWriter w) {
+	public TemplateBlock(Interface interfaceDef, Map<String, String> parameters, TemplateParser t, PrintWriter w) {
 		super(null, interfaceDef, parameters, t, w);
 	}
 
-	TemplateBlock(Node nodeDef, Map<String, String> parameters, TemplateParser t, PrintWriter w) {
+	public TemplateBlock(Node nodeDef, Map<String, String> parameters, TemplateParser t, PrintWriter w) {
 		super(null, nodeDef, parameters, t, w);
 	}
 

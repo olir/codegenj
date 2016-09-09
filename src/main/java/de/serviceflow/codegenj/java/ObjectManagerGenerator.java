@@ -13,13 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.serviceflow.codegenj;
+package de.serviceflow.codegenj.java;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.Map;
+
+import de.serviceflow.codegenj.Node;
+import de.serviceflow.codegenj.TemplateBlock;
+import de.serviceflow.codegenj.TemplateParser;
 
 /**
  * Java Code Generation processor executed fir each interface. Search f�r block
@@ -59,7 +63,7 @@ public class ObjectManagerGenerator {
 		/*
 		 * ObjectManager.c
 		 */
-		t = new TemplateParser("template/ObjectManager_c.txt");
+		t = new TemplateParser("template/java/ObjectManager_c.txt");
 		t.open();
 		try {
 			w = new PrintWriter(new FileOutputStream(jnidir + "/" + fileBaseName + ".c"));
@@ -77,7 +81,7 @@ public class ObjectManagerGenerator {
 		/*
 		 * ObjectManager.java
 		 */
-		t = new TemplateParser("template/ObjectManager_java.txt");
+		t = new TemplateParser("template/java/ObjectManager_java.txt");
 		t.open();
 		try {
 			w = new PrintWriter(new FileOutputStream(dir + "/" + ppath + fileBaseName + ".java"));

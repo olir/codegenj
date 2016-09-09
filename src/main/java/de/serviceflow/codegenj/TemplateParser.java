@@ -35,7 +35,7 @@ public class TemplateParser {
 	private String[] bufferedTokens = null; 
 	private int bufferedTokensPointer = 0;
 
-	TemplateParser(String path) {
+	public TemplateParser(String path) {
 		this.path = path;
 	}
 

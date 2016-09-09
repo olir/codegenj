@@ -37,7 +37,7 @@ typedef struct NativeReferenceStructure {
   GObject *value;
 } NativeReference;
 
-JNIEXPORT void JNICALL Java_$$$interface.jname$$$__1init(JNIEnv *env, jobject thisObj) {
+JNIEXPORT void JNICALL Java_$$$interface.jname$$$Proxy__1init(JNIEnv *env, jobject thisObj) {
 	/*
     jclass _cls = (*env)->GetObjectClass(env, thisObj);
     jfieldID _fid = (*env)->GetFieldID(env, _cls, "_proxy", "Ljava/lang/Object;");
@@ -49,7 +49,7 @@ JNIEXPORT void JNICALL Java_$$$interface.jname$$$__1init(JNIEnv *env, jobject th
     */
 }
  
-JNIEXPORT void JNICALL Java_$$$interface.jname$$$__1destroy(JNIEnv *env, jobject thisObj) {
+JNIEXPORT void JNICALL Java_$$$interface.jname$$$Proxy__1destroy(JNIEnv *env, jobject thisObj) {
     jclass _cls = (*env)->GetObjectClass(env, thisObj);
     jfieldID _fid = (*env)->GetFieldID(env, _cls, "_proxy", "Ljava/lang/Object;");
     jobject _bb = (*env)->GetObjectField(env, thisObj, _fid);
@@ -63,7 +63,7 @@ JNIEXPORT void JNICALL Java_$$$interface.jname$$$__1destroy(JNIEnv *env, jobject
 ###for properties###
 ###case read###
 	// getter for $$$property.name$$$ of type $$$property.type$$$
-JNIEXPORT $$$method.jnireturntype$$$ JNICALL Java_$$$interface.jname$$$_$$$method.jname$$$(JNIEnv *env, jobject thisObj) {
+JNIEXPORT $$$method.jnireturntype$$$ JNICALL Java_$$$interface.jname$$$Proxy_$$$method.jname$$$(JNIEnv *env, jobject thisObj) {
     jclass _cls = (*env)->GetObjectClass(env, thisObj);
     jfieldID _fid = (*env)->GetFieldID(env, _cls, "_proxy", "Ljava/lang/Object;");
     jobject _bb = (*env)->GetObjectField(env, thisObj, _fid);
@@ -77,7 +77,7 @@ $$$method.creturncode$$$}
 ###end###
 ###case write###
 	// setter for $$$property.name$$$ of type $$$property.type$$$
-JNIEXPORT void JNICALL Java_$$$interface.jname$$$_$$$method.jname$$$(JNIEnv *env, jobject thisObj$$$method.jniargs$$$) {
+JNIEXPORT void JNICALL Java_$$$interface.jname$$$Proxy_$$$method.jname$$$(JNIEnv *env, jobject thisObj$$$method.jniargs$$$) {
     jclass _cls = (*env)->GetObjectClass(env, thisObj);
     jfieldID _fid = (*env)->GetFieldID(env, _cls, "_proxy", "Ljava/lang/Object;");
     jobject _bb = (*env)->GetObjectField(env, thisObj, _fid);
@@ -93,7 +93,7 @@ JNIEXPORT void JNICALL Java_$$$interface.jname$$$_$$$method.jname$$$(JNIEnv *env
  
 ###for method###
 // Implementation of $$$interface.name$$$.$$$method.name$$$()
-JNIEXPORT $$$method.jnireturntype$$$ JNICALL Java_$$$interface.jname$$$_$$$method.jname$$$(JNIEnv *env, jobject thisObj$$$method.jniargs$$$) {
+JNIEXPORT $$$method.jnireturntype$$$ JNICALL Java_$$$interface.jname$$$Proxy_$$$method.jname$$$(JNIEnv *env, jobject thisObj$$$method.jniargs$$$) {
     jclass _cls = (*env)->GetObjectClass(env, thisObj);
     jfieldID _fid = (*env)->GetFieldID(env, _cls, "_proxy", "Ljava/lang/Object;");
     jobject _bb = (*env)->GetObjectField(env, thisObj, _fid);
