@@ -198,6 +198,7 @@ void $$$interface.jname$$$Skeleton_on_bus_acquired(GDBusConnection *connection, 
 
 	// register objects here
 
+	MyObject *myobj = ((ExportThreadData *) data)->obj;
 	// $$$interface.uname$$$ *skeleton = ((ExportThreadData *) data)->gskeleton;
 	// jobject *callbackObj = ((ExportThreadData *) data)->javaInstance;
 	const gchar *_path = ((ExportThreadData *) data)->gpath;
@@ -218,7 +219,7 @@ void $$$interface.jname$$$Skeleton_on_bus_acquired(GDBusConnection *connection, 
                                                         _path,
                                                         info, 		// introspection_data->interfaces[0],
                                                         &$$$interface.jname$$$Skeleton_interface_vtable,
-                                                        data->obj,      // user_data
+                                                        myobj,     // user_data
                                                         NULL,      // user_data_free_func
 														&_error);
     if (registration_id<=0) {
